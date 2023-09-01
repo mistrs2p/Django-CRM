@@ -10,17 +10,31 @@
           {% comment %} <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li> {% endcomment %}
+      {% if user.is_authenticated %}
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Login</a>
+          </li>
+      {% endif %}
           
-        </form>
       </div>
       {% if user.is_authenticated %}
         
-      <form action="{% url 'logout' %}">
+      <form method="POST" action="{% url 'logout' %}">
         {% csrf_token %}
         <button class="btn btn-secondary">Logout</button>
+      </form>
+      {% else %}
+      <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <button class="btn btn-secondary">Register</button>
       </form>
       {% endif %}
     </div>
