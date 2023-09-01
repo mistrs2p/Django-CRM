@@ -14,5 +14,5 @@ cursorObject = dataBase.cursor()
 
 # create a database
 cursorObject.execute("CREATE DATABASE dcrm")
-
+print('All done!')
 # All done
